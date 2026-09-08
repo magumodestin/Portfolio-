@@ -1,14 +1,29 @@
 const menuBtn = document.getElementById("menu-btn");
 const navLinks = document.querySelector(".nav-links");
+const menuIcon = menuBtn.querySelector("i");
+
+function closeMenu() {
+    navLinks.classList.remove("show");
+    menuIcon.classList.remove("fa-times");
+    menuIcon.classList.add("fa-bars");
+}
 
 menuBtn.addEventListener("click", () => {
-    navLinks.classList.toggle("show");
+    const isOpen = navLinks.classList.toggle("show");
+    menuIcon.classList.toggle("fa-bars", !isOpen);
+    menuIcon.classList.toggle("fa-times", isOpen);
 });
 
 document.querySelectorAll(".nav-links a").forEach(link => {
-    link.addEventListener("click", () => {
-        navLinks.classList.remove("show");
-    });
+    link.addEventListener("click", closeMenu);
+});
+
+// If the window is resized back up to desktop width while the
+// mobile menu is open, reset it so it doesn't get stuck open.
+window.addEventListener("resize", () => {
+    if (window.innerWidth > 900) {
+        closeMenu();
+    }
 });
 
 const themeBtn = document.getElementById("theme-btn");
@@ -26,6 +41,19 @@ themeBtn.addEventListener("click", () => {
         icon.classList.add("fa-moon");
     }
 });
+
+const skillBars = document.querySelectorAll(".skill-bar-item");
+
+const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("in-view");
+            barObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.3 });
+
+skillBars.forEach(bar => barObserver.observe(bar));
 
 const sections = document.querySelectorAll("section");
 const navItems = document.querySelectorAll(".nav-links a");

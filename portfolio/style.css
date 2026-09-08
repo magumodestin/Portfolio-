@@ -335,6 +335,87 @@ header {
     color: #f24e1e;
 }
 
+.php-icon {
+    color: #8892be;
+}
+
+.python-icon {
+    color: #ffd43b;
+}
+
+.bars-wrapper {
+    max-width: 1100px;
+    margin: 55px auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.bars-block h3 {
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--text-light);
+    margin-bottom: 22px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.skill-bar-item {
+    margin-bottom: 20px;
+}
+
+.skill-bar-item:last-child {
+    margin-bottom: 0;
+}
+
+.skill-bar-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 7px;
+}
+
+.skill-bar-label .name {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.skill-bar-label .level {
+    font-size: 11px;
+    color: var(--text-light);
+}
+
+.skill-bar-track {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: var(--border);
+    overflow: hidden;
+}
+
+.skill-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #b03a3a, red);
+    transition: width 1s ease;
+}
+
+.skill-bar-item.in-view .skill-bar-fill {
+    width: var(--fill);
+}
+
+.lang-bar-item .skill-bar-fill {
+    background: linear-gradient(90deg, #4aa9c4, #87CEEB);
+}
+
+@media (max-width: 900px) {
+    .bars-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+}
+
 .projects {
     max-width: 1200px;
     margin: auto;
@@ -502,6 +583,13 @@ body.light .nav-links a {
     color: #333;
 }
 
+@media (max-width: 900px) {
+    body.light .nav-links {
+        background: #ffffff;
+        border-bottom: 1px solid var(--border);
+    }
+}
+
 body.light .theme-btn,
 body.light .menu-btn {
     color: #111;
@@ -529,13 +617,19 @@ body.light footer {
         background: #0b0f19;
         flex-direction: column;
         align-items: center;
-        padding: 25px;
+        padding: 0 25px;
         gap: 20px;
-        display: none;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+        display: flex;
     }
 
     .nav-links.show {
-        display: flex;
+        max-height: 400px;
+        opacity: 1;
+        padding: 25px;
     }
 
     .menu-btn {
@@ -678,6 +772,42 @@ body.light footer {
     .badge-card {
         min-height: 340px;
         padding: 60px 25px 30px;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero h2 {
+        font-size: 17px;
+    }
+
+    .hero-image img {
+        width: 240px;
+    }
+
+    .skills-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .skill-card {
+        min-height: 100px;
+    }
+
+    .skill-card i {
+        font-size: 30px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .btn {
+        font-size: 13px;
+        padding: 10px 16px;
     }
 }
 

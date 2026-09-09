@@ -55,6 +55,43 @@ const barObserver = new IntersectionObserver((entries) => {
 
 skillBars.forEach(bar => barObserver.observe(bar));
 
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.getElementById("lightbox-img");
+const lightboxClose = document.getElementById("lightbox-close");
+const zoomableImages = document.querySelectorAll("img:not(#lightbox-img)");
+
+function openLightbox(img) {
+    lightboxImg.src = img.currentSrc || img.src;
+    lightboxImg.alt = img.alt;
+    lightbox.classList.add("show");
+    document.body.style.overflow = "hidden";
+}
+
+function closeLightbox() {
+    lightbox.classList.remove("show");
+    lightboxImg.src = "";
+    document.body.style.overflow = "";
+}
+
+zoomableImages.forEach(img => {
+    img.addEventListener("click", () => openLightbox(img));
+});
+
+lightboxClose.addEventListener("click", closeLightbox);
+
+// Clicking the dark backdrop (but not the image itself) closes it
+lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+        closeLightbox();
+    }
+});
+
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && lightbox.classList.contains("show")) {
+        closeLightbox();
+    }
+});
+
 const sections = document.querySelectorAll("section");
 const navItems = document.querySelectorAll(".nav-links a");
 

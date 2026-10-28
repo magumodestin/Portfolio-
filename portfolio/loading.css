@@ -1,0 +1,247 @@
+:root {
+  --bg: #f5deb3;
+  --bg-deep: #ecd39a;
+
+  --ink: #3b2a1a;
+  --ink-dim: #6e5232;
+
+  --stroke: #cbb384;
+  --track: #e6cd98;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: 'Space Grotesk', sans-serif;
+
+  transition: opacity 0.6s ease;
+}
+
+body.leaving {
+  opacity: 0;
+}
+
+/* Background */
+
+.glow {
+  position: fixed;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      rgba(255, 255, 255, 0.5),
+      transparent 60%
+    ),
+    var(--bg-deep);
+
+  z-index: 0;
+}
+
+/* Main content */
+
+.stage {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+
+  width: 100%;
+  padding: 0 24px;
+}
+
+/* Name */
+
+.name {
+  position: relative;
+
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+
+  line-height: 0.86;
+
+  font-size: clamp(
+    3rem,
+    11vw,
+    7.6rem
+  );
+
+  letter-spacing: -0.01em;
+
+  color: transparent;
+
+  -webkit-text-stroke: 1.5px var(--stroke);
+  text-stroke: 1.5px var(--stroke);
+
+  user-select: none;
+}
+
+.name .fill {
+  position: absolute;
+  inset: 0;
+
+  color: transparent;
+
+  -webkit-text-stroke: 1.5px var(--ink);
+
+  background-image:
+    linear-gradient(
+      var(--ink),
+      var(--ink)
+    );
+
+  background-repeat: no-repeat;
+
+  background-position: 0 100%;
+
+  background-size: 100% 0%;
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+}
+
+/* Timer */
+
+.timer {
+  position: relative;
+
+  width: 108px;
+  height: 108px;
+
+  margin-top: clamp(
+    26px,
+    4vh,
+    42px
+  );
+}
+
+.timer svg {
+  width: 100%;
+  height: 100%;
+
+  transform: rotate(-90deg);
+}
+
+.timer circle {
+  fill: none;
+  stroke-width: 3;
+}
+
+/* Timer track */
+
+.timer .track {
+  stroke: var(--track);
+}
+
+/* Progress arc */
+
+.timer .arc {
+  stroke: var(--ink);
+
+  stroke-linecap: round;
+
+  stroke-dasharray: 314;
+  stroke-dashoffset: 314;
+}
+
+/* Timer ticks */
+
+.timer .tick {
+  stroke: var(--track);
+  stroke-width: 2;
+}
+
+.timer .tick.major {
+  stroke: var(--ink-dim);
+  stroke-width: 2.5;
+}
+
+/* Timer center */
+
+.timer .hub {
+  fill: var(--ink);
+}
+
+/* Timer hand */
+
+.timer .hand {
+  stroke: var(--ink);
+
+  stroke-width: 2;
+
+  stroke-linecap: round;
+
+  transform-origin: 54px 54px;
+}
+
+/* Percentage / seconds */
+
+.timer .percent {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-variant-numeric: tabular-nums;
+
+  font-size: 1.15rem;
+
+  color: var(--ink);
+}
+
+.timer .percent::after {
+  content: '%';
+
+  font-size: 0.7rem;
+
+  color: var(--ink-dim);
+
+  margin-left: 2px;
+
+  align-self: flex-start;
+
+  margin-top: 3px;
+}
+
+/* Tagline */
+
+.tagline {
+  margin-top: 18px;
+
+  font-size: 0.8rem;
+
+  letter-spacing: 0.18em;
+
+  color: var(--ink-dim);
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
+}

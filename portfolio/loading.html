@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Destine Magumo — Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@900&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="loading.css">
+</head>
+
+<body>
+
+  <div class="glow"></div>
+
+  <div class="stage">
+
+    <div class="name">
+      DESTINE
+      <span class="fill" aria-hidden="true">DESTINE</span>
+    </div>
+
+    <div class="name">
+      MAGUMO
+      <span class="fill" aria-hidden="true">MAGUMO</span>
+    </div>
+
+    <div class="timer">
+
+      <svg viewBox="0 0 108 108">
+
+        <circle class="track" cx="54" cy="54" r="50"></circle>
+
+        <g class="ticks" id="ticks" transform="rotate(90 54 54)"></g>
+
+        <circle class="arc" id="arc" cx="54" cy="54" r="50"></circle>
+
+        <g transform="rotate(90 54 54)">
+          <line class="hand" id="hand" x1="54" y1="54" x2="54" y2="16"></line>
+          <circle class="hub" cx="54" cy="54" r="2.5"></circle>
+        </g>
+
+      </svg>
+
+      <div class="percent" id="percent">0</div>
+
+    </div>
+
+    <div class="tagline">
+      Software development portfolio
+    </div>
+
+  </div>
+
+  <script src="loading.js"></script>
+
+</body>
+</html>
